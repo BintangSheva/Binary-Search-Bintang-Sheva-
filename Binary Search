@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct Book {
+	string Theme;
+	string Author;
+	int PublicationYear;
+};
+
+int binarySearch(Book book[], string target, int size) {
+	int left = 0;
+	int right = size - 1; 
+	while (left <= right) {
+		int mid = left + (right - left) / 2;
+		
+		if (book[mid]. Theme == target) {
+			return mid;
+		} else if (book[mid].Theme < target) {
+			left = mid + 1;
+		} else {
+			right = mid - 1;
+		}
+	}
+	return -1; // not found
+}
+
+int main() {
+	Book book[] = {
+	{"Sophie's World", "Author = Jostein Gaarder", 1991},
+	{"Dilan 1991", "Author = Pidi Baiq",  2015},
+	{"Teruslah Bodoh Jangan Pintar", "Author = Tere Liye", 2024},
+	{"Imperfect", "Author = Meira Anastasia", 2018}, 
+	{"Manusia Setengah Salmon", "Author = Raditya Dika", 2011},
+	{"Ngenest", "Author = Ernest Prakasa", 2015},	
+	};
+	
+	int size = sizeof(book) / sizeof(book[01]);
+	
+	string target;
+	cout << "Put the theme of book you want to search : ";
+	getline(cin,target);
+	
+	int result = binarySearch(book,target,size);
+	
+	if (result != -1) {
+		cout << "You Found the Book" << endl;
+		cout << "Theme : " << book[result].Theme << endl;
+		cout << "Publication Year : " << book[result].PublicationYear << endl;
+		cout << "Author : " << book[result].Author << endl;
+	}else {
+		cout << "You didn't found the book" << endl;
+	}
+	
+	return 0;
+}
